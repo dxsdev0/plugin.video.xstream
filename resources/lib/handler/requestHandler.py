@@ -179,7 +179,8 @@ class cRequestHandler:
         if self._sResponseHeader.get('Content-Encoding') == 'gzip':
             sContent = gzip.GzipFile(fileobj=io.BytesIO(oResponse.read())).read()
             if sys.version_info[0] == 3:
-                sContent = sContent.decode('utf-8').encode('utf-8', 'replace').decode('utf-8')
+                #sContent = sContent.decode('utf-8').encode('utf-8', 'replace').decode('utf-8')
+                sContent = sContent.decode('unicode_escape').encode('utf-8').decode('utf-8')
         else:
             if sys.version_info[0] == 2:
                 sContent = oResponse.read()
