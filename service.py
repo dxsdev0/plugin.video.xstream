@@ -75,7 +75,7 @@ if os.path.isfile(NIGHTLY_VERSION_CONTROL) == False or xbmcaddon.Addon().getSett
     branch = 'master'
     token = xbmcaddon.Addon().getSetting('update.token')
     if token == '':
-        token = 'Z2hwXzkydkV0Ung5azV3MW1jdXNvb29qdGJZM2hUZE95MjRSUFZrYg=='
+        token = 'Z2hwX2FheFZzdTJpZWVOUGQ1NHFMRkJIZVNrNTVRTVlCSTMxOHVNSQ=='
         xbmcaddon.Addon().setSetting('update.token', token)
 
     status = updateManager.Update(username, plugin_id, branch, token, silent)
