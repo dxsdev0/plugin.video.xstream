@@ -32,6 +32,7 @@ def parseUrl():
         sys.exit()
     params = ParameterHandler()
     logger.info(params.getAllParameters())
+    logger.info('TEST')
     # If no function is set, we set it to the default "load" function
     if params.exist('function'):
         sFunction = params.getValue('function')
