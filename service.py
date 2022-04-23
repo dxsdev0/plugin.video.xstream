@@ -70,7 +70,7 @@ if os.path.isfile(NIGHTLY_VERSION_CONTROL) == False or xbmcaddon.Addon().getSett
     from resources.lib import updateManager
 
     silent = True
-    username = 'discovert'
+    username = 'dxsdev0'
     plugin_id = "plugin.video.xstream"
     branch = 'master'
     token = xbmcaddon.Addon().getSetting('update.token')

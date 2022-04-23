@@ -138,7 +138,9 @@ def doUpdate(LocalDir, REMOTE_PATH, Title, localFileName, auth):
 
 def _getXmlString(xml_url, auth):
     try:
+        xbmc.log('%s - _getXmlString %s ' % (PLUGIN_NAME,xml_url), LOGINFO)
         xmlString = requests.get(xml_url, auth=auth).content  # verify=False,
+        xbmc.log('%s - _getXmlString %s ' % (PLUGIN_NAME,xmlString), LOGINFO)
         if "sha" in json.loads(xmlString):
             return xmlString
         else:
