@@ -515,7 +515,8 @@ def ajaxCall():
     else:
         aData = loads(sHtmlContent)
         pattern = '<div class="Opt leftOpt Headlne"><a title="(.*?)" href="(.*?)">.*?src="(.*?)".*?class="Descriptor">(.*?)</div.*?lng/(.*?).png'
-        aResult = cParser().parse(aData['Content'].encode('utf-8'), pattern)
+        #aResult = cParser().parse(aData['Content'].encode('utf-8'), pattern)
+        aResult = cParser().parse(aData['Content'], pattern)
         if aResult[0]:
             total = len(aResult[1])
             for aEntry in aResult[1]:

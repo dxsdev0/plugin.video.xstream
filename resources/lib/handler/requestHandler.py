@@ -180,12 +180,26 @@ class cRequestHandler:
             sContent = gzip.GzipFile(fileobj=io.BytesIO(oResponse.read())).read()
             if sys.version_info[0] == 3:
                 #sContent = sContent.decode('utf-8').encode('utf-8', 'replace').decode('utf-8')
-                sContent = sContent.decode('unicode_escape').encode('utf-8').decode('utf-8')
+                try:
+                    #sContent = sContent.decode('unicode_escape').encode('utf-8').decode('utf-8')
+                    sContent = sContent.decode('utf-8')
+                    #sContent = sContent.decode('utf-8').encode('utf-8').decode('utf-8')
+                    logger.debug('request: gzip utf-8 ' + str(type(sContent)))
+                except Exception as e:
+                    sContent = sContent.decode('iso-8859-1')
+                    logger.debug('request: gzip iso-8859-1 ' + str(type(sContent)))
         else:
             if sys.version_info[0] == 2:
                 sContent = oResponse.read()
+                logger.debug('request: flat py2')
             else:
-                sContent = oResponse.read().decode('utf-8').encode('utf-8', 'replace').decode('utf-8')
+                #sContent = oResponse.read().decode('utf-8').encode('utf-8', 'replace').decode('utf-8')
+                try:
+                    sContent = sContent.decode('utf-8')
+                    logger.debug('request: utf-8')
+                except Exception as e:
+                    sContent = sContent.decode('iso-8859-1').encode('utf-8').decode('utf-8')
+                    logger.info('request: iso-8859-1')
         if 'lazingfast' in sContent:
             bf = cBF().resolve(self._sUrl, sContent, cookieJar, self._USER_AGENT, sParameters)
             if bf:
